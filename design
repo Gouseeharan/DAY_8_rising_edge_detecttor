@@ -1,0 +1,19 @@
+module detector ( input clk, reset, signal_in , output reg pulse);
+reg hold;
+always @( posedge clk ) begin
+  if ( reset ) begin
+  pulse <= 0;
+  hold <=0;
+  end
+  else if ( signal_in == 1 && hold == 0 ) begin
+  pulse <= 1; 
+  hold <=1;
+  end
+  else if ( signal_in == 0 && hold == 1) begin
+  hold <= 0;
+  pulse <= 0;
+  end
+  else
+  pulse <= 0;
+  end
+  endmodule
